@@ -2,7 +2,7 @@
 #include <unistd.h>
 /**
  * main - A program that write a line using write
- * Return:1(success)
+ * Return: 1 (success)
  */
 int main(void)
 {
