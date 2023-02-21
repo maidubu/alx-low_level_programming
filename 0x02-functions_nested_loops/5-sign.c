@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * print_sign - Program that prints the sign of a number.
+ * print_sign - A program that prints the sign of a number.
  * @n: is the number to be checked
  * Return: 1 if n is greater than zero, 0 if n is zero, otherwise -1
 **/
