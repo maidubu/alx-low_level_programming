@@ -1,70 +1,41 @@
-#include <stdlib.h>
 #include "main.h"
-
+#include <stdio.h>
+#include <stdlib.h>
 /**
- * str_concat - concatenate two strings s1 and s2
- * @s1: leading str s1
- * @s2: concatenated str s2
- * Return: Pointer to concat str || Null
+ * str_concat - Main Entry
+ * @s1: input
+ * @s2: input
+ * Return: 0
  */
-
 char *str_concat(char *s1, char *s2)
 {
-	char *s3_ptr;
-	int s1_len, s2_len;
+	unsigned int size1 = 0, size2 = 0;
+	char *ptr, *ret;
 
-	s1_len = _strlen(s1);
-	s2_len = _strlen(s2);
+	ptr = s1;
+	if (s1)
+		while (*ptr++)
+			size1++;
+	else
+		s1 = "";
 
-	s3_ptr = malloc(sizeof(char) * (s1_len + s2_len + 1));
-	if (!s3_ptr)
+	ptr = s2;
+	if (s2)
+		while (*ptr++)
+			size2++;
+	else
+		s2 = "";
+
+	ret = malloc(size1 + size2 + 1);
+	if (!ret)
 		return (NULL);
 
-	/* append s1 -> s3 @pos: 0; then append s2 -> s3 @pos: (end of s1) */
-	s3_ptr = _strappend(s3_ptr, s1, 0);
-	s3_ptr = _strappend(s3_ptr, s2, s1_len);
+	ptr = ret;
+	while (*s1)
+		*ptr++ = *s1++;
+	while (*s2)
+		*ptr++ = *s2++;
+	*ptr = 0;
 
-	return (s3_ptr);
+	return (ret);
 }
-
-/**
- * _strlen - calculate the length of a string
- * @str: pointer to string
- * Return: length of string
- */
-int _strlen(char *str)
-{
-	int len = 0;
-
-	if (!str)
-		str = "";
-
-	while (str[len] != '\0')
-		len++;
-	return (len);
-}
-
-/**
- * _strappend - add string2 to string1 from a specified index
- * @newstr: string2, the new string
- * @str: string1, the older string
- * @append_index: index to start concat op
- * Return: pointer to new string
- */
-char *_strappend(char *newstr, char *str, unsigned int append_index)
-{
-	unsigned int ndx_i = 0;
-
-	if (!str)
-		str = "";
-
-	while (str[ndx_i] != '\0')
-	{
-		newstr[append_index] = str[ndx_i];
-		append_index++;
-		ndx_i++;
-	}
-
-	return (newstr);
-}
-
